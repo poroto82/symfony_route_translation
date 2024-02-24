@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class IndexController extends AbstractController
 {
     #[Route(
-        path: '/{_locale}/',
+        path: ['/{_locale}/','/'],
         name: 'index',
         requirements: [
             '_locale' => 'en|es',

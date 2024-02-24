@@ -3,66 +3,124 @@
 {% block title %}{{'Welcome'|trans}}!{% endblock %}
 
 {% block body %}
+
 <style>
-    body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-        }
+  @charset "UTF-8";
 
-        .container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+  :root {
+    --background: linear-gradient(30deg, #af7720 30%, #f1c40f);
+    --background-select: linear-gradient(to left, #34495e 3rem, #2c3e50 3rem);
+  }
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-        p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
+  body {
+    font-family: "Anta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    background: var(--background);
+    color: white;
+  }
 
-        .social-icons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
 
-        .social-icons a {
-            display: inline-block;
-            margin: 0 10px;
-            color: #343a40;
-            font-size: 1.5em;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+  .container {
+    background-color: #fff;
+    padding: 40px;
+    color: #af7720;
+    border-radius: 10px;
+    box-shadow: 0 11px 36px rgba(0, 0, 0, 1);
+    text-align: center;
+  }
 
-        .social-icons a:hover {
-            color: #007bff;
-        }
+  /* Reset <select> defaults */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: inherit;
+    box-shadow: none;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  /* Custom Select wrapper */
+  .select {
+    position: relative;
+    display: flex;
+    color: white;
+    width: 100%;
+    background: var(--background-select);
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+
+  .select select {
+    flex: 1;
+    padding: 1em;
+    cursor: pointer;
+  }
+
+  .select::after {
+    content: "▼";
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    transition: 0.25s all ease;
+    pointer-events: none;
+  }
+
+  .select:hover::after {
+    color: #f39c12;
+    -webkit-animation: bounce 0.5s infinite;
+    animation: bounce 0.5s infinite;
+  }
+
+  @-webkit-keyframes bounce {
+    25% {
+      transform: translatey(5px);
+    }
+
+    75% {
+      transform: translatey(-5px);
+    }
+  }
+
+  @keyframes bounce {
+    25% {
+      transform: translatey(5px);
+    }
+
+    75% {
+      transform: translatey(-5px);
+    }
+  }
 </style>
 
 <div class="container">
+  <label class="select">
     <select>
-        <option value="es">ES</option>
+      <option value="es">ES</option>
     </select>
+  </label>
+  <div class="card">
     <h1>{{'Coming Soon'|trans}}</h1>
-    <p>{{'A new developer that you will be proud of'|trans}}</p>
+    <h2>{{'A new developer that you will be proud of'|trans}}</h2>
     <div class="countdown">
-        <!-- Aquí puedes poner un contador de cuenta regresiva si lo deseas -->
-        <!-- Por ejemplo: <span id="countdown"></span> -->
+
     </div>
+  </div>
 </div>
 
 
