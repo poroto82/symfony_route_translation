@@ -91,6 +91,10 @@
     animation: bounce 0.5s infinite;
   }
 
+  #countdown {
+        font-size: 24px;
+    }
+
   @-webkit-keyframes bounce {
     25% {
       transform: translatey(5px);
@@ -115,16 +119,17 @@
 <div class="container">
   <label class="select">
     <select id="languageSelect">
-      <option value="es" {% if app.request.getLocale() == 'es' %}selected{%endif%}>ES</option>
-      <option value="en" {% if app.request.getLocale() == 'en' %}selected{%endif%}>EN</option>
+      <option value="es" {% if app.request.getLocale()=='es' %}selected{%endif%}>ES</option>
+      <option value="en" {% if app.request.getLocale()=='en' %}selected{%endif%}>EN</option>
     </select>
   </label>
-  
+
   <div class="card">
     <h1>{{'Coming Soon'|trans}}</h1>
     <h2>{{'A new developer that you will be proud of'|trans}}</h2>
-    <div class="countdown">
-
+    <div>
+      <p>{{'This page will self destruct in'|trans}}...</p>
+      <div id="countdown">00:00:00</div>
     </div>
   </div>
 </div>
@@ -136,6 +141,35 @@
     let selectedValue = this.value;
     window.location.href = '/' + this.value;
   });
+
+
+  const endDate = new Date('2024-03-01T00:00:00').getTime(); //viene de back
+
+  // Actualizar el temporizador cada segundo
+  const timerInterval = setInterval(() => {
+    // Obtener la fecha y hora actual
+    const now = new Date().getTime();
+
+    // Calcular la diferencia entre la fecha final y la fecha actual
+    const difference = endDate - now;
+
+    // Calcular las horas, minutos y segundos restantes
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    // Mostrar el temporizador en el formato HH:MM:SS
+    document.getElementById('countdown').innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    // Si la cuenta regresiva termina, detener el temporizador
+    if (difference < 0) {
+      clearInterval(timerInterval);
+      document.getElementById('countdown').innerHTML = '00:00:00';
+      alert('¡Tiempo terminado!');
+    }
+  }, 1000); // 1000 milisegundos = 1 segundo
+
+
 </script>
 
 {%endblock%}
