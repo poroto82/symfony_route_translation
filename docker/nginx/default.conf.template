@@ -1,0 +1,18 @@
+log_format compression '$remote_addr - $remote_user [$time_local] "$request" '
+                       '$status $body_bytes_sent "$http_referer" '
+                       '"$http_user_agent" "$http_x_forwarded_for" '
+                       '$request_time $upstream_response_time $pipe $upstream_cache_status';
+
+server {
+    listen  80;
+    root /var/www/public;
+    index index.php index.html index.htm;
+    location / {
+        try_files $uri $uri/ /index.php?q=$uri&$args;
+    }
+    location ~ ^/.+\.php(/|$) {
+        fastcgi_pass ${FASTCGI_URL};
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}

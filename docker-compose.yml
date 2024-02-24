@@ -1,19 +1,24 @@
 version: "3.7"
 
 services:
-  php:
+  php-fpm:
     build: ./docker/php
-    tty: true
     volumes:
       - ./app:/var/www
+      - .env:/var/www/.env
+    command: sh -c 'composer install && php-fpm'
+
 
   nginx:
-    build: ./docker/nginx
-    tty: true
-    depends_on:
-      - php
+    image: nginx:1.18
+    working_dir: /var/www
     ports:
-      - "80:80"
+      - 8080:80
+    depends_on:
+        - php-fpm
+    environment:
+        - FASTCGI_URL=php-fpm:9000
     volumes:
-      - ./app:/var/www
-      - ./logs:/var/logs/nginx
+        - ./app:/var/www
+        - ./docker/nginx:/etc/nginx/templates
+        - ./logs:/var/logs/nginx
