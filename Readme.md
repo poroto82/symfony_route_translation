@@ -15,8 +15,8 @@ Este arquivo fornece instruções sobre como configurar e executar a aplicação
    Clone o repositório da aplicação do GitHub:
 
    ```bash
-   git clone <URL_DO_REPOSITÓRIO>
-   cd <NOME_DO_DIRETÓRIO>
+   git clone https://github.com/poroto82/symfony_route_translation/
+   cd symfony_route_translation
    ```
 
 2. **Copiar o Arquivo de Ambiente:**
