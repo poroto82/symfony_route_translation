@@ -72,6 +72,10 @@
     cursor: pointer;
   }
 
+  select option {
+    color: black;
+  }
+
   .select::after {
     content: "▼";
     position: absolute;
@@ -110,10 +114,12 @@
 
 <div class="container">
   <label class="select">
-    <select>
-      <option value="es">ES</option>
+    <select id="languageSelect">
+      <option value="es" {% if app.request.getLocale() == 'es' %}selected{%endif%}>ES</option>
+      <option value="en" {% if app.request.getLocale() == 'en' %}selected{%endif%}>EN</option>
     </select>
   </label>
+  
   <div class="card">
     <h1>{{'Coming Soon'|trans}}</h1>
     <h2>{{'A new developer that you will be proud of'|trans}}</h2>
@@ -125,3 +131,14 @@
 
 
 {% endblock %}
+
+
+{%block javascripts %}
+<script>
+  document.getElementById("languageSelect").addEventListener("change", function () {
+    let selectedValue = this.value;
+    window.location.href = '/' + this.value;
+  });
+</script>
+
+{%endblock%}
