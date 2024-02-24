@@ -45,6 +45,8 @@ Este arquivo fornece instruções sobre como configurar e executar a aplicação
 
    Uma vez que todos os contêineres estejam em execução, você pode acessar a aplicação a partir do seu navegador web, inserindo a URL apropriada.
 
+   http://localhost:8080
+
 6. **Parar a Aplicação (Opcional):**
 
    Quando terminar de trabalhar com a aplicação, você pode pará-la executando:
@@ -55,18 +57,3 @@ Este arquivo fornece instruções sobre como configurar e executar a aplicação
 
    Isso irá parar e remover os contêineres relacionados.
 
-## Contribuição
-
-Se desejar contribuir para este projeto, siga estes passos:
-
-1. Faça um fork do projeto.
-2. Crie uma nova branch (`git checkout -b feature/nova-caracteristica`).
-3. Faça suas alterações e comite (`git commit -am 'Adiciona uma nova funcionalidade'`).
-4. Faça push para a branch (`git push origin feature/nova-caracteristica`).
-5. Abra um Pull Request.
-
-## Problemas
-
-Se encontrar algum problema com a configuração ou execução da aplicação, abra um issue no repositório para que possamos ajudá-lo.
-
-Obrigado por utilizar nossa aplicação!
